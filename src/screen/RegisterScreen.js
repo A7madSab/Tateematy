@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Text, View, ScrollView, StyleSheet, Button } from "react-native"
+import { Text, View, ScrollView, StyleSheet, Button, StatusBar, TextInput, TouchableOpacity } from "react-native"
 import { Input, FormValidationMessage } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import firebaseAPI from "../api/firebaseAPI"
@@ -30,6 +30,9 @@ export default class RegisterScreen extends Component {
             this.state.phoneNumber
         )
         if (error) console.log(error)
+        
+        firebaseAPI.signInWithEmailAndPassword(this.state.email,this.state.password)
+        this.props.navigation.navigate('signedIn')
     }
 
     focusTheField(nextField) {
@@ -39,17 +42,18 @@ export default class RegisterScreen extends Component {
 
     render() {
         return (
-            <KeyboardAwareScrollView>
-                <ScrollView>
+            
+                <View style={styles.container}>
 
-                    <View style={styles.fieldView}>
-                        <Text>Name: </Text>
-                        <Input
+                <StatusBar hidden = { true } ></StatusBar>
+
+                    <View style={styles.container2}>
+                        <TextInput
                             label="Name"
-                            placeholder="Name"
-                            blurOnSubmit={false}
+                            placeholder={'Name'}
+                            style={styles.input2}
                             value={this.state.name}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
+                            blurOnSubmit={false}
                             onSubmitEditing={() => { this.focusTheField('surName'); }}
 
                             /**
@@ -61,117 +65,135 @@ export default class RegisterScreen extends Component {
                                 }
                             }}
                         />
-                    </View>
-
-                    <View style={styles.fieldView}>
-                        <Text> SurName:</Text>
-                        <Input
+                        <TextInput
                             ref="surName"
-                            label="SurName"
-                            placeholder="SurName"
+                            placeholder={'Sur Name'}
+                            style={styles.input2}
                             blurOnSubmit={false}
                             value={this.state.SurName}
-                            leftIcon={<Icon name='user' size={16} color='grey' />}
                             onSubmitEditing={() => { this.focusTheField('idNumber'); }}
                             onChangeText={(surName) => this.setState({ surName })}
                         />
                     </View>
-
-                    <View style={styles.fieldView}>
-                        <Text> Id Number: </Text>
-                        <Input
-                            ref="idNumber"
-                            label="ID Number: "
-                            placeholder='ID Number'
-                            blurOnSubmit={false}
-                            value={this.state.idNumber}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
-                            onSubmitEditing={() => { this.focusTheField('street'); }}
-                            onChangeText={(idNumber) => this.setState({ idNumber })}
-                        />
-                    </View>
-
-                    <View style={styles.fieldView}>
-                        <Text> Street</Text>
-                        <Input
+                    <TextInput
+                        ref="idNumber"
+                        placeholder={'ID Number'}
+                        style={styles.input1}
+                        blurOnSubmit={false}
+                        value={this.state.idNumber}
+                        onSubmitEditing={() => { this.focusTheField('street'); }}
+                        onChangeText={(idNumber) => this.setState({ idNumber })}
+                    />
+                    <View style={styles.container2}>
+                        <TextInput
                             ref="street"
-                            label="Street"
-                            placeholder='Street'
+                            placeholder={'Street'}
+                            style={styles.input2}
                             blurOnSubmit={false}
                             value={this.state.street}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
                             onSubmitEditing={() => { this.focusTheField('city'); }}
                             onChangeText={(street) => this.setState({ street })}
                         />
-                    </View>
-
-                    <View style={styles.fieldView}>
-                        <Text>City</Text>
-                        <Input
+                        <TextInput
                             ref="city"
-                            label="City"
-                            placeholder='City'
+                            placeholder={'city'}
+                            style={styles.input2}
                             blurOnSubmit={false}
                             value={this.state.city}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
                             onSubmitEditing={() => { this.focusTheField('email'); }}
                             onChangeText={(city) => this.setState({ city })}
                         />
                     </View>
 
-                    <View style={styles.fieldView}>
-                        <Text>Email</Text>
-                        <Input
-                            ref="email"
-                            label="Email"
-                            placeholder='Email'
-                            blurOnSubmit={false}
-                            value={this.state.email}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
-                            onSubmitEditing={() => { this.focusTheField('password'); }}
-                            onChangeText={(email) => this.setState({ email })}
-                        />
-                    </View>
-
-                    <View style={styles.fieldView}>
-                        <Text> Password: </Text>
-                        <Input
-                            ref="password"
-                            label="Password"
-                            placeholder='Password'
-                            blurOnSubmit={false}
-                            value={this.state.password}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
-                            onSubmitEditing={() => { this.focusTheField('phoneNumber'); }}
-                            onChangeText={(password) => this.setState({ password })}
-                        />
-                    </View>
-
-                    <View style={styles.fieldView}>
-                        <Text>Phone Number</Text>
-                        <Input
-                            ref="phoneNumber"
-                            label="Phone Number"
-                            placeholder='phoneNumber'
-                            value={this.state.phoneNumber}
-                            leftIcon={<Icon name='user' size={24} color='black' />}
-                            onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
-                        />
-                    </View>
-
-                    <Button
-                        title="REGISTER"
-                        onPress={this.onRegisterPress}
+                    <TextInput
+                        ref="email"
+                        value={this.state.email}
+                        placeholder={'E-Mail'}
+                        style={styles.input1}
+                        blurOnSubmit={false}
+                        onSubmitEditing={() => { this.focusTheField('password'); }}
+                        onChangeText={(email) => this.setState({ email })}
                     />
-                </ScrollView>
-            </KeyboardAwareScrollView>
-        )
-    }
+                
+                    <TextInput
+                        ref="password"
+                        value={this.state.password}
+                        placeholder={'Password'}
+                        secureTextEntry={true}
+                        style={styles.input1}
+                        blurOnSubmit={false}
+                        onSubmitEditing={() => { this.focusTheField('phoneNumber'); }}
+                            onChangeText={(password) => this.setState({ password })}
+                    />
+
+                    <TextInput
+                        ref="phoneNumber"
+                        value={this.state.phoneNumber}
+                        placeholder={'Phone Number'}
+                        style={styles.input1}
+                        onChangeText={(phoneNumber) => this.setState({ phoneNumber })}
+                    />
+
+                    <TouchableOpacity activeOpacity= {0.75} style={styles.opa}
+                    onPress={this.onRegisterPress}
+                    >
+                    
+                        <Text style={styles.textss} >JOIN</Text>
+                    
+                    </TouchableOpacity>
+
+                </View>
+            )
+        }
 }
 
 
+
 const styles = StyleSheet.create({
-    fieldView: {
-        flexDirection: "row",
-    }
-})
+    container: {
+        backgroundColor: '#fffbe5',
+        alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center',
+    },
+    container2: {
+        backgroundColor: '#fffbe5',
+        alignItems: 'center',
+        flex: 0.28,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    opa: {
+        alignItems: 'center',
+        backgroundColor:'#e7e7e7',
+        paddingHorizontal: 50,
+        paddingVertical: 20,
+        marginTop: 10,
+        borderRadius: 50,
+    },
+    textss: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: '#000000'
+    },
+    input1: {
+        width: 300,
+        height: 45,
+        padding: 5,
+        borderWidth: 1,
+        borderColor: '#666666',
+        marginBottom: 8,
+        fontSize: 16
+      },
+    input2: {
+    width: 146,
+    height: 45,
+    padding: 5,
+    borderWidth: 1,
+    borderColor: '#666666',
+    marginBottom: 4,
+    fontSize: 16,
+    marginRight: 4.5,
+    marginLeft: 2
+    },
+});
