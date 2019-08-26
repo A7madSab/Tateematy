@@ -1,3 +1,7 @@
+import React from 'react'
+import { Text, View } from "react-native"
+import { Icon } from 'react-native-elements'
+
 import { createAppContainer, createMaterialTopTabNavigator, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
 
@@ -10,68 +14,99 @@ const AuthStack = createMaterialTopTabNavigator({
     }
 })
 
-const AppStackNavigation = createStackNavigator({
+const HomePageStackNavigation = createStackNavigator({
     Home: {
-        screen: HomeScreen
+        screen: HomeScreen,
+        path: 'Home',
+        navigationOptions: ({ navigation }) => {
+            return {
+                headerLeft: (
+                    <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
+                ),
+                headerTitle: (
+                    <View>
+                        <Text> Home </Text>
+                    </View>
+                )
+            }
+        }
     },
     AddChild: {
-        screen: AddChildScreen
+        screen: AddChildScreen,
+        path: 'AddChildScreen',
+        navigationOptions: {
+            headerTitle: (
+                <View>
+                    <Text> AddChildScreen </Text>
+                </View>
+            )
+        }
     },
     Vaccination: {
-        screen: VaccinationScreen
+        screen: VaccinationScreen,
+        path: 'Vaccination',
+        navigationOptions: {
+            headerTitle: (
+                <View>
+                    <Text> Vaccination </Text>
+                </View>
+            )
+        }
     }
 })
 
-const AppDrawerNavigation = createDrawerNavigator({
-    Home: {
-        screen: AppStackNavigation
-    },
+const AddChildScreenStackNavigation = createStackNavigator({
     AddChild: {
         screen: AddChildScreen
     },
-    Vaccination: {
-        screen: VaccinationScreen
-    },
+}, {
+        defaultNavigationOptions: ({ navigation }) => {
+            return {
+                headerLeft: (
+                    <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
+                )
+            }
+        }
+    })
+
+const SettingsScreenStackNavigation = createStackNavigator({
     Settings: {
         screen: SettingsScreen
     }
-})
+}, {
+        defaultNavigationOptions: ({ navigation }) => {
+            return {
+                headerLeft: (
+                    <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
+                )
+            }
+        }
+    })
 
-// const Navigation = createStackNavigator({
-//     Stack: AppStackNavigation,
-//     Drawer: AppDrawerNavigation,
-// })
-
-// const AddChildStackNavigation = createStackNavigator({
-//     Home: {
-//         screen: HomeScreen
-//     },
-//     AddChild: {
-//         screen: AddChildScreen
-//     },
-//     Vaccination: {
-//         screen: VaccinationScreen
-//     }
-// })
-
-
-// const VaccinationStackNavigation = createStackNavigator({
-//     Home: {
-//         screen: HomeScreen
-//     },
-
-// })
-
-
-
-const AppNavigation = createSwitchNavigator({
-    Auth: {
-        screen: AuthStack
+const AppNavigation = createDrawerNavigator({
+    Home: {
+        screen: HomePageStackNavigation
     },
-    App: {
-        screen: AppDrawerNavigation
+    AddChild: {
+        screen: AddChildScreenStackNavigation
+    },
+    Settings: {
+        screen: SettingsScreenStackNavigation
     }
 })
 
+const createRootNavigation = (signedIn = false) => {
+    console.log(signedIn)
+    return createAppContainer(createSwitchNavigator({
+        signedIn: {
+            screen: AppNavigation
+        },
+        signedOut: {
+            screen: AuthStack
+        }
+    }, {
+            initialRouteName: signedIn ? "signedIn" : "signedOut"
+        }))
+}
 
-export default createAppContainer(AppNavigation)
+export default createRootNavigation
