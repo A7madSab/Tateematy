@@ -1,8 +1,10 @@
 import React from 'react'
 import { Text, View, Button, TouchableOpacity } from "react-native"
 import { Card } from "react-native-elements"
+import firebaseApi from "../api/firebaseAPI"
 
 export default function HomeScreen(props) {
+    console.log(firebaseApi.currentLoggedInUser())
     return (
         <View>
             <Text> HomeScreen </Text>

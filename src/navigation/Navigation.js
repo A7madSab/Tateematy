@@ -12,7 +12,30 @@ const AuthStack = createMaterialTopTabNavigator({
     Register: {
         screen: RegisterScreen
     }
-})
+},
+{
+    tabBarPosition: 'top',
+    swipeEnabled: true,
+    tabBarOptions: {
+      activeTintColor: '#FFFFFF',
+      inactiveTintColor: '#FFFFFF',
+      
+      style: {
+        backgroundColor: '#fc63a1',
+      },
+      labelStyle: {
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: 'bold',
+        color:'#c1c1c1'
+      },
+      indicatorStyle: {
+        borderBottomColor: '#c1c1c1',
+        borderBottomWidth: 5,
+      },
+    },
+  }
+);
 
 const HomePageStackNavigation = createStackNavigator({
     Home: {

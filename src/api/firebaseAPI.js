@@ -43,7 +43,7 @@ export default class FirebaseApi {
                 return user
             } else {
                 console.log(`No User Is Logged In `)
-                return null
+                return {}
             }
         });
     }
