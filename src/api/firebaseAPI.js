@@ -25,8 +25,8 @@ export default class FirebaseApi {
             });
     }
 
-    static currentLoggedInUser = () => {
-        firebase.auth().onAuthStateChanged((user) => {
+    static currentLoggedInUser = async () => {
+        await firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log(user)
                 return user
