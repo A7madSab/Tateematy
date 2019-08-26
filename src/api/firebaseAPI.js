@@ -24,15 +24,15 @@ export default class FirebaseApi {
                 return error
             });
     }
-
-    static currentLoggedInUser = async () => {
-        await firebase.auth().onAuthStateChanged((user) => {
+    
+    static currentLoggedInUser = () => {
+        firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 console.log(user)
                 return user
             } else {
                 console.log(`No User Is Logged In `)
-                return null
+                return {}
             }
         });
     }

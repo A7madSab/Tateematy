@@ -5,6 +5,7 @@ import { Button, Card } from "react-native-elements"
 import firebaseApi from "../api/firebaseAPI"
 
 export default function HomeScreen(props) {
+    console.log(firebaseApi.currentLoggedInUser())
     return (
         <View>
             <TouchableOpacity onPress={() => { props.navigation.navigate("Vaccination") }} style={styles.opa}>

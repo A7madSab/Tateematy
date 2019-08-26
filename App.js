@@ -11,19 +11,25 @@ export default class App extends Component {
     super(props)
     this.state = {
       lang: "en",
-      userLoggedIn: false,
       user: {},
+      loggedInUser: null
     }
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
+    console.log("init state", this.state)
   }
 
-  componentWillMount() {
-    firebaseApi.currentLoggedInUserId().then(currentLoggedInUserId => {
-      if (currentLoggedInUserId) {
+  componentDidMount() {
+    firebaseApi.currentLoggedInUserId().then(id => {
+      if (id === null) {
         this.setState(() => ({
-          userLoggedIn: true
+          userLoggedIn: false,
+          user: {}
+        }))
+      } else {
+        this.setState(() => ({
+          userLoggedIn: true,
         }))
       }
     })

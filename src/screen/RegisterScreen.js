@@ -55,7 +55,15 @@ export default class RegisterScreen extends Component {
                             value={this.state.name}
                             blurOnSubmit={false}
                             onSubmitEditing={() => { this.focusTheField('surName'); }}
-                            onChangeText={(name) => this.setState({ name })}
+
+                            /**
+                             * TODO: regular exp
+                             */
+                            onChangeText={(name) => {
+                                if (name.match(/^[a-zA-Z]$/)) {
+                                    return this.setState({ name })
+                                }
+                            }}
                         />
                         <TextInput
                             ref="surName"
