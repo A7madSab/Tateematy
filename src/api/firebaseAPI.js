@@ -25,6 +25,17 @@ export default class FirebaseApi {
             });
     }
 
+    static addChild = (childName, birthday) => {
+        firebase.database().ref(this.currentLoggedInUser+"/children").set({
+            childName,
+            birthday
+        }).then(() => {
+            console.log("Inserted")
+        }).catch((err) => {
+            console.log("not Inserted error:", err)
+        });
+    }
+
     static currentLoggedInUser = () => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
