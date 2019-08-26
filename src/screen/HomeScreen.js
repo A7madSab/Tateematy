@@ -3,6 +3,7 @@ import { Text, View,  TouchableOpacity, StyleSheet, Image } from "react-native"
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button, Card } from "react-native-elements"
 import firebaseApi from "../api/firebaseAPI"
+// import sendMail from "../config/mail"
 
 export default function HomeScreen(props) {
     console.log(firebaseApi.currentLoggedInUser())
@@ -34,13 +35,12 @@ export default function HomeScreen(props) {
                 </Card>
             </TouchableOpacity>
 
-            <TouchableOpacity activeOpacity= {0.75} style={styles.opaa}
-                    onPress={this.onRegisterPress}
-                    >
-                    
-                        <Text style={styles.ttextss} >Add Child</Text>
-                    
-                    </TouchableOpacity>
+            <TouchableOpacity activeOpacity= {0.75} style={styles.opaa} onPress={this.onRegisterPress}>
+                    <Text style={styles.ttextss} >Add Child</Text>
+            </TouchableOpacity>
+            {/**
+                <Button title='send mail' onPress={()=> {sendMail()}}></Button>
+             */}
         </View>
     )
 }
