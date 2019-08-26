@@ -10,29 +10,31 @@ export default class App extends Component {
     super(props)
     this.state = {
       lang: "en",
-      userLoggedIn: false,
       user: {},
+      loggedInUser: null
     }
-
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
+    console.log("init state", this.state)
   }
 
-  componentWillMount() {
-    firebaseApi.currentLoggedInUserId().then(currentLoggedInUserId => {
-      console.log("currentLoggedInUserId", currentLoggedInUserId)
-      if (currentLoggedInUserId) {
+  componentDidMount() {
+    firebaseApi.currentLoggedInUserId().then(id => {
+      if (id === null) {
         this.setState(() => ({
-          userLoggedIn: true
+          userLoggedIn: false,
+          user: {}
+        }))
+      } else {
+        this.setState(() => ({
+          userLoggedIn: true,
         }))
       }
-      console.log("state", this.state)
     })
   }
 
   render() {
-    console.log("current Logged In User Id before render", firebaseApi.currentLoggedInUserId())
     const Layout = Navigation(this.state.userLoggedIn)
     return <Layout />
   }
