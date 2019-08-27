@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, Button } from "react-native"
+import { Text, View, Button, Picker } from "react-native"
 import { Icon } from 'react-native-elements'
 import { createAppContainer, createMaterialTopTabNavigator, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
@@ -39,6 +39,7 @@ const VaccinationScreenStackNavigation = createStackNavigator({
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
+
     }}
 })
 
@@ -77,7 +78,9 @@ const VaccinationScreenStackNavigation = createStackNavigator({
                 screen: VaccinationScreenStackNavigation,
                 navigationOptions:{
                     headerTitle:(
-                        <Text>Vaccination</Text>
+                        <View>
+                            <Text>Vaccination</Text>
+                        </View>
                     )
                 }
             },
