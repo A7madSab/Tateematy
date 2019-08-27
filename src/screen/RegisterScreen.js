@@ -151,13 +151,13 @@ export default class RegisterScreen extends Component {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#fffbe5',
+        backgroundColor: '#effdfd',
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
     },
     container2: {
-        backgroundColor: '#fffbe5',
+        backgroundColor: '#effdfd',
         alignItems: 'center',
         flex: 0.28,
         flexDirection: 'row',

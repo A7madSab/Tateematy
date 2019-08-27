@@ -1,20 +1,28 @@
 Arguments: 
+<<<<<<< HEAD
   C:\Program Files\nodejs\node.exe C:\Users\ahmad\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add babel
+=======
+  D:\app\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add @sendgrid/mail
+>>>>>>> 40e4e85e537a228faf94ffd35d358ea33995c20f
 
 PATH: 
-  C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\ahmad\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Python27;C:\Python27\Scripts;C:\app\ahmad\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\Intel\iCLS Client;C:\Program Files\Intel\iCLS Client;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\WINDOWS\System32\OpenSSH;C:\Program Files\dotnet;C:\Program Files\Microsoft SQL Server\130\Tools\Binn;C:\xampp\php;C:\ProgramData\ComposerSetup\bin;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn;C:\Program Files (x86)\Microsoft SQL Server\140\DTS\Binn;C:\Program Files (x86)\Microsoft SQL Server\140\Tools\Binn\ManagementStudio;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\130\Tools\Binn;C:\Program Files\Microsoft SQL Server\140\Tools\Binn;C:\Program Files\Microsoft SQL Server\140\DTS\Binn;C:\Program Files (x86)\Rational\common;C:\Program Files\Java\jdk-11.0.2\bin;C:\Program Files\Cloud Foundry;C:\ProgramData\chocolatey\bin;C:\Program Files\nodejs;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn;C:\Program Files (x86)\dotnet;C:\Program Files\Microsoft VS Code\bin;C:\Users\ahmad\AppData\Local\Programs\Python\Python37-32\Scripts;C:\Users\ahmad\AppData\Local\Programs\Python\Python37-32;C:\Users\ahmad\AppData\Local\Microsoft\WindowsApps;C:\Users\ahmad\AppData\Roaming\Composer\vendor\bin;C:\flutter\bin;C:\Users\ahmad\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2018.3.4\bin;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Users\ahmad\AppData\Roaming\npm;C:\Users\ahmad\AppData\Local\Android\Sdk\tools;C:\Users\ahmad\AppData\Local\Android\Sdk\platform-tools
+  C:\Program Files (x86)\Common Files\Oracle\Java\javapath;D:\app\AHMED\product\11.2.0\dbhome_1\bin;C:\Program Files (x86)\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\ProgramData\ComposerSetup\bin;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;D:\app\nodejs\;C:\ProgramData\chocolatey\bin;C:\Program Files (x86)\Yarn\bin\;D:\app\Git\cmd;C:\Users\ahmed\AppData\Local\Microsoft\WindowsApps;C:\Users\ahmed\AppData\Local\Microsoft\WindowsApps;C:\Users\ahmed\AppData\Local\Programs\Microsoft VS Code\bin;D:\app\PHP7;C:\Users\ahmed\AppData\Roaming\Composer\vendor\bin;C:\Users\ahmed\AppData\Roaming\npm;C:\Users\ahmed\AppData\Local\Yarn\bin;C:\Program Files (x86)\Android\android-sdk\platform-tools;
 
 Yarn version: 
-  1.16.0
+  1.17.3
 
 Node version: 
-  12.6.0
+  10.16.3
 
 Platform: 
   win32 x64
 
 Trace: 
+<<<<<<< HEAD
   Error: EPERM: operation not permitted, unlink 'C:\Users\ahmad\Desktop\Tateematy\node_modules\react-moment-proptypes\src'
+=======
+  Error: EPERM: operation not permitted, unlink 'C:\Users\ahmed\Desktop\Tateematy\node_modules\@babel\generator\node_modules\.bin'
+>>>>>>> 40e4e85e537a228faf94ffd35d358ea33995c20f
 
 npm manifest: 
   {
@@ -28,7 +36,10 @@ npm manifest:
     },
     "dependencies": {
       "babel": "^6.23.0",
+<<<<<<< HEAD
       "emailjs": "^2.2.0",
+=======
+>>>>>>> 40e4e85e537a228faf94ffd35d358ea33995c20f
       "expo": "^34.0.1",
       "firebase": "^6.4.2",
       "react": "16.8.3",

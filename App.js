@@ -4,6 +4,7 @@ import Navigation from "./src/navigation/Navigation"
 import { firebaseConfig } from "./src/config/firebase"
 import * as firebase from "firebase"
 import firebaseApi from "./src/api/firebaseAPI"
+import {createAppContainer} from "react-navigation"
 
 export default class App extends Component {
   constructor(props) {
@@ -19,8 +20,8 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    firebaseApi.currentLoggedInUserId().then(id => {
-      if (id === null) {
+    const finalid = firebaseApi.currentLoggedInUserId().then(id => {
+      if (id  === null) {
         this.setState(() => ({
           userLoggedIn: false,
           user: {}
@@ -34,7 +35,22 @@ export default class App extends Component {
   }
 
   render() {
-    const Layout = Navigation(this.state.userLoggedIn)
-    return <Layout />
+    const AppNavigation = Navigation(this.state.userLoggedIn)
+    const RootAppNavigation = createAppContainer(AppNavigation)
+    return <RootAppNavigation/>
   }
 }
+
+
+  // console.log("current Logged In User Id before render", firebaseApi.currentLoggedInUserId())
+  // componentWillMount() {
+  //   firebaseApi.currentLoggedInUserId().then(currentLoggedInUserId => {
+  //     console.log("currentLoggedInUserId", currentLoggedInUserId)
+  //     if (currentLoggedInUserId) {
+  //       this.setState(() => ({
+  //         userLoggedIn: true
+  //       }))
+  //     }
+  //     console.log("state", this.state)
+  //   })
+  // }
