@@ -4,30 +4,42 @@ import { Text, View, ScrollView, StyleSheet, Button, StatusBar, TextInput, Touch
 import { Input, FormValidationMessage } from 'react-native-elements';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import firebaseApi from "../api/firebaseAPI"
+import * as firebase from "firebase"
 
 export default class LoginScreen extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        errors: []
     }
     focusTheField(nextField) {
         this.refs[nextField].focus();
     }
+
     onLoginPress = () => {
-         if(this.state.email !== '' || this.state.password !==''){
-            firebaseApi.signInWithEmailAndPassword(this.state.email, this.state.password)
-            this.props.navigation.navigate("Home")
-         }
+        console.log(this.state)
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .catch((error) => {
+                console.log("error", error.message)
+                if (error.message) {
+                    this.setState(() => ({
+                        errors: error.message
+                    }))
+                } else {
+                    this.props.navigation.navigate("Home")
+                }
+            })
     }
 
-    onRegisterPress = () =>{
+    onRegisterPress = () => {
         this.props.navigation.navigate("Register")
     }
 
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar hidden = { true } ></StatusBar>
+                <StatusBar hidden={true} ></StatusBar>
+
                 <TextInput
                     placeholder={'E-Mail'}
                     style={styles.input}
@@ -36,7 +48,7 @@ export default class LoginScreen extends Component {
                     onSubmitEditing={() => { this.focusTheField('password'); }}
                     onChangeText={(email) => this.setState({ email })}
                 />
-               
+
                 <TextInput
                     ref="password"
                     value={this.state.password}
@@ -46,18 +58,17 @@ export default class LoginScreen extends Component {
                     style={styles.input}
                 />
 
-                <TouchableOpacity activeOpacity= {0.75} style={styles.opa}
-                        onPress={this.onLoginPress}
-                 >
+                <View>
+                    <Text>{this.state.errors}</Text>
+                </View>
+
+                <TouchableOpacity activeOpacity={0.75} style={styles.opa} onPress={this.onLoginPress}>
                     <Text style={styles.textss} >LOGIN</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity activeOpacity= {0.75} style={styles.opa}onPress={this.onRegisterPress}>
-         
-            <Text>REGISTER</Text>
-            
-        
-        </TouchableOpacity>
+                <TouchableOpacity activeOpacity={0.75} style={styles.opa} onPress={this.onRegisterPress}>
+                    <Text>REGISTER</Text>
+                </TouchableOpacity>
 
                 <Button title="Current Logged in User" onPress={() => { firebaseApi.currentLoggedInUser() }} />
                 <Button title="Current Logged in User ID" onPress={() => { firebaseApi.currentLoggedInUserId() }} />
@@ -79,7 +90,7 @@ const styles = StyleSheet.create({
     },
     opa: {
         alignItems: 'center',
-        backgroundColor:'#e7e7e7',
+        backgroundColor: '#e7e7e7',
         paddingHorizontal: 50,
         paddingVertical: 20,
         marginTop: 40,
@@ -98,5 +109,8 @@ const styles = StyleSheet.create({
         borderColor: '#666666',
         marginBottom: 10,
         fontSize: 18
-      },
+    },
 });
+                        // ((item) => {
+                        // return <Text> {item}</Text>
+                    // })}

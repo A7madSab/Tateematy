@@ -1,45 +1,32 @@
 import React from 'react'
-import { Text, View, Button, Picker } from "react-native"
-import { Icon } from 'react-native-elements'
-import { createAppContainer, createMaterialTopTabNavigator, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
+
+import { Text, View, Button } from "react-native"
+import { createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
 import FirebaseApi from '../api/firebaseAPI';
 
 const AddChildScreenStackNavigation = createStackNavigator({
     AddChild: {
-        screen: AddChildScreen
-    },
-}, {
-        defaultNavigationOptions: ({ navigation }) => {
-            return {
-                headerLeft: (
-                    <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
-                )
-            }
+        screen: AddChildScreen,
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
         }
-    })
-    const SettingsScreenStackNavigation = createStackNavigator({
-        Settings: {
-            screen: SettingsScreen
-        }
-    }, {
-            defaultNavigationOptions: ({ navigation }) => {
-                return {
-                    headerLeft: (
-                        <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
-                    )
-                }
-            }
-        })
-    
-    
+    }
+})
+
+const SettingsScreenStackNavigation = createStackNavigator({
+    Settings: {
+        screen: SettingsScreen
+    }
+})
+
 const VaccinationScreenStackNavigation = createStackNavigator({
     Vaccination: {
         screen: VaccinationScreen,
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
-
     }}
 })
 
@@ -84,12 +71,23 @@ const VaccinationScreenStackNavigation = createStackNavigator({
                     )
                 }
             },
-            Settings: {
-                screen: SettingsScreenStackNavigation
+        AddChild: {
+            screen: AddChildScreenStackNavigation
+        },
+        Vaccination: {
+            screen: VaccinationScreenStackNavigation,
+            navigationOptions: {
+                headerTitle: (
+                    <Text>Vaccination</Text>
+                )
             }
-        },{
+        },
+        Settings: {
+            screen: SettingsScreenStackNavigation
+        }
+    }, {
             initialRouteName: signedIn ? "Home" : "Login"
         })
-    }
+}
 
 export default createRootNavigation

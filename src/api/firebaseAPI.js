@@ -2,10 +2,9 @@ import * as firebase from "firebase"
 
 export default class FirebaseApi {
     static signInWithEmailAndPassword = (email, password) => {
-        firebase.auth().signInWithEmailAndPassword(email, password)
-            .catch((error) => {
-                console.log(error.code, error.message)
-            })
+        const result = firebase.auth().signInWithEmailAndPassword(email, password)
+            .catch((error) => error.message)
+        console.log(result)
     }
 
     static registerWithEmailAndPassword = (name, surName, idNumber, street, city, email, password, phoneNumber) => {
@@ -24,7 +23,7 @@ export default class FirebaseApi {
                 return error
             });
     }
-    
+
     static currentLoggedInUser = () => {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {

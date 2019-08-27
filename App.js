@@ -17,7 +17,6 @@ export default class App extends Component {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
-    console.log("init state", this.state)
   }
 
   componentDidMount() {
