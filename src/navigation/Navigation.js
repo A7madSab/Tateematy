@@ -1,23 +1,18 @@
 import React from 'react'
 import { Text, View, Button } from "react-native"
-import { Icon } from 'react-native-elements'
-import { createAppContainer, createMaterialTopTabNavigator, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
+import { createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
 import FirebaseApi from '../api/firebaseAPI';
 
 const AddChildScreenStackNavigation = createStackNavigator({
     AddChild: {
-        screen: AddChildScreen
-    },
-}, {
-        defaultNavigationOptions: ({ navigation }) => {
-            return {
-                headerLeft: (
-                    <Icon name="menu" onPress={() => { navigation.openDrawer() }} />
-                )
-            }
+        screen: AddChildScreen,
+        headerMode: 'none',
+        navigationOptions: {
+            headerVisible: false,
         }
-    })
+    }
+})
 
 const SettingsScreenStackNavigation = createStackNavigator({
     Settings: {

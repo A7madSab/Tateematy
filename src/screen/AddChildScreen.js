@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, Button, TextInput, StyleSheet } from "react-native"
-import { Input, FormValidationMessage } from 'react-native-elements'
-import { AddChildScreen } from '.';
+import { View, Button, StyleSheet } from "react-native"
+import { Input } from 'react-native-elements'
 import FirebaseApi from '../api/firebaseAPI';
 
 
@@ -10,6 +9,15 @@ export default class ChildTextInput extends Component {
         name: '',
         surName: '',
         month: 0
+    }
+    /***
+     *TODO: each page check if session is still open 
+     */
+    componentDidMount() {
+        console.log("current logged in user", FirebaseApi.currentLoggedInUserId())
+        if (FirebaseApi.currentLoggedInUserId() === null) {
+            this.props.navigation.navigate("Login")
+        }
     }
 
     focusTheField(nextField) {

@@ -7,44 +7,57 @@ import firebaseApi from "../api/firebaseAPI"
 // import sendMail from "../config/mail"
 
 
-export default function HomeScreen(props) {
-    console.log(firebaseApi.currentLoggedInUser())
-    return (
-        <View>
-            <TouchableOpacity onPress={() => { props.navigation.navigate("Vaccination") }} style={styles.opa}>
-                <Card title="10/15/2019" style={styles.container} >
-                    <View style={styles.container2}>
-                        <View style={{ flex: 1 }}>
-                            <Text> NAME: AHMAD</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text> AGE: 3 Months</Text>
-                        </View>
-                    </View>
-                </Card>
-            </TouchableOpacity>
+export default class HomeScreen extends Component {
 
-            <TouchableOpacity onPress={() => { props.navigation.navigate("Vaccination") }} style={styles.opa}>
-                <Card title="10/15/2019" style={styles.container} >
-                    <View style={styles.container2}>
-                        <View style={{ flex: 1 }}>
-                            <Text> NAME: AHMAD</Text>
-                        </View>
-                        <View style={{ flex: 1 }}>
-                            <Text> AGE: 3 Months</Text>
-                        </View>
-                    </View>
-                </Card>
-            </TouchableOpacity>
+    componentDidMount() {
+        console.log("current logged in user", firebaseApi.currentLoggedInUserId())
+        if (firebaseApi.currentLoggedInUserId()) {
+            this.props.navigation.navigate("Login")
+        }
+    }
 
-            <TouchableOpacity activeOpacity={0.75} style={styles.opaa} onPress={this.onRegisterPress}>
-                <Text style={styles.ttextss} >Add Child</Text>
-            </TouchableOpacity>
-            {/**
-                <Button title='send mail' onPress={()=> {sendMail()}}></Button>
-             */}
-        </View>
-    )
+    render() {
+        console.log(this.props)
+        return (
+            <View>
+                <TouchableOpacity onPress={() => { props.navigation.navigate("Vaccination") }} style={styles.opa}>
+                    <Card title="10/15/2019" style={styles.container} >
+                        <View style={styles.container2}>
+                            <View style={{ flex: 1 }}>
+                                <Text> NAME: AHMAD</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text> AGE: 3 Months</Text>
+                            </View>
+                        </View>
+                    </Card>
+                </TouchableOpacity>
+
+                <TouchableOpacity onPress={() => { props.navigation.navigate("Vaccination") }} style={styles.opa}>
+                    <Card title="10/15/2019" style={styles.container} >
+                        <View style={styles.container2}>
+                            <View style={{ flex: 1 }}>
+                                <Text> NAME: AHMAD</Text>
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <Text> AGE: 3 Months</Text>
+                            </View>
+                        </View>
+                    </Card>
+                </TouchableOpacity>
+
+
+                <TouchableOpacity activeOpacity={0.75} style={styles.opaa} onPress={() => {
+                    this.props.navigation.navigate("AddChild")
+                }}>
+                    <Text style={styles.ttextss} >Add Child</Text>
+                </TouchableOpacity>
+                {/**
+                    <Button title='send mail' onPress={()=> {sendMail()}}></Button>
+                */}
+            </View>
+        )
+    }
 }
 
 
