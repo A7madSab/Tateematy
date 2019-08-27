@@ -11,12 +11,11 @@ export default class App extends Component {
     this.state = {
       lang: "en",
       user: {},
-      loggedInUser: null
+      loggedInUser: true
     }
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig)
     }
-    console.log("init state", this.state)
   }
 
   componentDidMount() {

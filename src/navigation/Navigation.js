@@ -3,7 +3,7 @@ import { Text, View } from "react-native"
 import { Icon } from 'react-native-elements'
 
 import { createAppContainer, createMaterialTopTabNavigator, createDrawerNavigator, createStackNavigator, createSwitchNavigator } from "react-navigation"
-import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
+import { LoginScreen, LogoutScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
 
 const AuthStack = createMaterialTopTabNavigator({
     Login: {
@@ -13,28 +13,28 @@ const AuthStack = createMaterialTopTabNavigator({
         screen: RegisterScreen
     }
 },
-{
-    tabBarPosition: 'top',
-    swipeEnabled: true,
-    tabBarOptions: {
-      activeTintColor: '#FFFFFF',
-      inactiveTintColor: '#FFFFFF',
-      
-      style: {
-        backgroundColor: '#fc63a1',
-      },
-      labelStyle: {
-        textAlign: 'center',
-        fontSize: 16,
-        fontWeight: 'bold',
-        color:'#c1c1c1'
-      },
-      indicatorStyle: {
-        borderBottomColor: '#c1c1c1',
-        borderBottomWidth: 5,
-      },
-    },
-  }
+    {
+        tabBarPosition: 'top',
+        swipeEnabled: true,
+        tabBarOptions: {
+            activeTintColor: '#FFFFFF',
+            inactiveTintColor: '#FFFFFF',
+
+            style: {
+                backgroundColor: '#fc63a1',
+            },
+            labelStyle: {
+                textAlign: 'center',
+                fontSize: 16,
+                fontWeight: 'bold',
+                color: '#c1c1c1'
+            },
+            indicatorStyle: {
+                borderBottomColor: '#c1c1c1',
+                borderBottomWidth: 5,
+            },
+        },
+    }
 );
 
 const HomePageStackNavigation = createStackNavigator({
@@ -115,8 +115,9 @@ const AppNavigation = createDrawerNavigator({
     },
     Settings: {
         screen: SettingsScreenStackNavigation
-    }
+    },
 })
+
 
 const createRootNavigation = (signedIn = false) => {
     console.log(signedIn)
