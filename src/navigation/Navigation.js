@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { Text, View, Button } from "react-native"
 import { createStackNavigator, createSwitchNavigator } from "react-navigation"
 import { LoginScreen, RegisterScreen, HomeScreen, VaccinationScreen, AddChildScreen, SettingsScreen } from "../screen/index"
@@ -24,38 +25,50 @@ const VaccinationScreenStackNavigation = createStackNavigator({
         headerMode: 'none',
         navigationOptions: {
             headerVisible: false,
-        }
-    }
+    }}
 })
 
-const createRootNavigation = (signedIn = false) => {
-    return createStackNavigator({
-        Login: {
-            screen: LoginScreen,
-            navigationOptions: {
-                headerTitle: (
-                    <View style={{ felx: 1, flexDirection: "row", alignItems: "center" }}>
-                        <Text> Login </Text>
-                    </View>
-                )
-            }
-        },
-        Register: {
-            screen: RegisterScreen
-        },
-        Home: {
-            screen: HomeScreen,
-            navigationOptions: ({ navigation }) => {
-                return {
-                    headerLeft: (
-                        <Button title="Logout " onPress={() => {
-                            FirebaseApi.logoutUser()
-                            navigation.navigate("Login")
-                        }} />
-                    ),
+    const createRootNavigation = (signedIn = false)=>{
+        return  createStackNavigator({
+            Login: {
+                screen: LoginScreen,
+                navigationOptions: {
+                    headerTitle: (
+                        <View style={{felx:1, flexDirection:"row", alignItems:"center"}}>
+                            <Text> Login </Text>
+                        </View>
+                    )
                 }
-            }
-        },
+            },
+            Register: {
+                screen: RegisterScreen
+            },
+            Home: {
+                screen: HomeScreen,
+                navigationOptions: ({ navigation }) => {
+                        return {
+                            headerLeft: (
+                                <Button title="Logout " onPress={()=>{
+                                    FirebaseApi.logoutUser()
+                                    navigation.navigate("Login")
+                                }}/>
+                            ),
+                        }
+                    }
+            },
+            AddChild: {
+                screen: AddChildScreenStackNavigation
+            },
+            Vaccination: {
+                screen: VaccinationScreenStackNavigation,
+                navigationOptions:{
+                    headerTitle:(
+                        <View>
+                            <Text>Vaccination</Text>
+                        </View>
+                    )
+                }
+            },
         AddChild: {
             screen: AddChildScreenStackNavigation
         },

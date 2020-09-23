@@ -59,7 +59,7 @@ export default class LoginScreen extends Component {
                 />
 
                 <View>
-                    <Text>{this.state.errors[0]}</Text>
+                    <Text>{this.state.errors}</Text>
                 </View>
 
                 <TouchableOpacity activeOpacity={0.75} style={styles.opa} onPress={this.onLoginPress}>
