@@ -16,6 +16,7 @@ export default class HomeScreen extends Component {
         }
     }
 
+    //  sednd frid firebase reacrt 
     render() {
         console.log(this.props)
         return (

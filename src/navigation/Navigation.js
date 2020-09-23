@@ -7,11 +7,9 @@ import FirebaseApi from '../api/firebaseAPI';
 const AddChildScreenStackNavigation = createStackNavigator({
     AddChild: {
         screen: AddChildScreen,
-        headerMode: 'none',
-        navigationOptions: {
-            headerVisible: false,
-        }
     }
+}, {
+    headerMode: "none"
 })
 
 const SettingsScreenStackNavigation = createStackNavigator({
@@ -73,8 +71,8 @@ const createRootNavigation = (signedIn = false) => {
             screen: SettingsScreenStackNavigation
         }
     }, {
-            initialRouteName: signedIn ? "Home" : "Login"
-        })
+        initialRouteName: signedIn ? "Home" : "Login"
+    })
 }
 
 export default createRootNavigation
